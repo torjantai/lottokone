@@ -1,0 +1,133 @@
+* {
+  box-sizing: border-box;
+}
+html,
+body {
+      height: 100%;
+      margin: 0;
+      font-size: 20px;
+      font-family: 'Archivo Black', sans-serif;
+}
+body {
+
+    display: flex;
+    flex-direction: column;
+    min-width: 500px;
+    /* background-color: #002049; */
+    color: #ffc700;
+    text-shadow: 1px 1px 5px black;
+}
+header,
+footer {
+  background-color: #509ab7;
+  text-align: center;
+  max-width: 100%;
+  padding: 1em;
+  box-shadow: 0 -10px 15px -5px grey;
+}
+header {
+  box-shadow: 0 10px 15px -5px grey;
+}
+main {
+  margin: auto;
+  padding: 1em;
+  width: 80%;
+  min-width: 425px;
+  max-width: 500px;
+  background-color: #509ab7;
+  box-shadow: 0 0 15px grey;
+}
+
+footer {
+  flex-shrink: 0;
+  margin-top: auto;
+
+}
+
+label[for^="until"] {
+  flex: 1;
+  color: black;
+  cursor: pointer;
+  font-size: 2em;
+  padding: .5em;
+  margin-bottom: .5em;
+  margin-top: .5em;
+  background: #fff;
+  text-align: center;
+  border-right: dotted 1px lightgrey;
+  transition: 1s ease;
+  text-shadow: none;
+
+}
+
+label[for^="until"]:last-of-type {
+  border-radius: 0 20px 20px 0;
+  border-right: none;
+}
+label[for^="until"]:first-of-type {
+  border-radius: 20px 0 0 20px;
+}
+
+label[for^="until"]:hover {
+  background: #ffc700;
+    transition: 1s ease;
+}
+input {
+  width: 100%;
+  font-size: 2em;
+  border: none;
+  /* box-shadow: 0px 1px 3px -1px inset; */
+  padding: .5em;
+  border-radius: .5em;
+  margin-bottom: .5em;
+  margin-top: .5em;
+
+}
+input[type="number"] {
+  text-align: right;
+  display: block;
+
+}
+input[type="radio"] {
+  display: none;
+}
+input[type="radio"]:checked + label {
+  background: #fc2028;
+  color: white;
+}
+#results {
+  min-height: 4em;
+}
+
+#load {
+  width: 100%;
+
+}
+#loadspan {
+  display: block;
+  width: 30%;
+  background-color: red;
+  /* display: none; */
+  animation-duration: 5s;
+  animation-name: load;
+  animation-iteration-count: infinite;
+}
+
+@keyframes load {
+    0% {
+      margin-left: 0;
+    }
+
+    50% {
+      margin-left: 70%;
+    }
+    100% {
+      margin-left: 0%;
+    }
+}
+
+
+.radio-container {
+  display: flex;
+  flex-wrap: nowrap;
+}
