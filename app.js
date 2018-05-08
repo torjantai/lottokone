@@ -15,6 +15,11 @@ let weeksDrawn = 0;
 let printHTML = ''
 let howManyWeeks = 1000000;
 let drawUntilScore = 7;
+let match6Count = 0;
+let match5Count = 0;
+let match4Count = 0;
+let match3Count = 0;
+let match2Count = 0;
 
 
 let button = document.getElementById('run-simulation');
@@ -32,14 +37,14 @@ function print(message) {
 };
 
 //this function creates a random integer 1-40
-const random40 = () => {
+function random40() {
   randomNumber =  Math.floor(Math.random()*40) + 1;
   return randomNumber;
 };
 
 
 //this function creates a winning row
-const createWinningRow = () => {
+function createWinningRow() {
 winningRow = [];
   do {
     let ball = random40();
@@ -53,7 +58,7 @@ winningRow = [];
 
 
 //this function creates a player's row similarly
-const createPlayerRow = () => {
+function createPlayerRow() {
 playerRow = [];
   do {
     let ball = random40();
@@ -66,12 +71,27 @@ playerRow = [];
 };
 
 //this function tells how many numbers the player got right
-const checkRow = () => {
+function checkRow() {
 rowScore = 0
   for ( let i = 0; i < 7; i++ ) {
     if ( winningRow.indexOf(playerRow[i]) > -1 ) {
       rowScore += 1;
     }
+  }
+  if (rowScore === 6) {
+    match6Count += 1;
+  }
+  if (rowScore === 5) {
+    match5Count += 1;
+  }
+  if (rowScore === 4) {
+    match4Count += 1;
+  }
+  if (rowScore === 3) {
+    match3Count += 1;
+  }
+  if (rowScore === 2) {
+    match2Count += 1;
   }
 //console.log(rowScore);
 };
@@ -92,17 +112,17 @@ function checkRowFast() {
   } while ( failed === false && rowScore < 7 );
 }
 
-//this function creates winningRow and playerRow and then checks how many numers match
-const drawOneWeek = () => {
+//this function creates winningRow and playerRow and then checks how many numbers match
+function drawOneWeek() {
   createWinningRow();
   createPlayerRow();
 
-  if ( drawUntilScore === 7 ) {
-    checkRowFast();
-    }
-  else {
+  // if ( drawUntilScore === 7 ) {
+  //   checkRowFast();
+  //   }
+  // else {
     checkRow();
-    }
+    // }
   weeksDrawn += 1;
   //console.log(weeksDrawn);
 };
@@ -130,6 +150,12 @@ function runSimulation() {
   window.setTimeout(function() {
     getUserSettings();
     weeksDrawn = 0;
+    match6Count = 0;
+    match5Count = 0;
+    match4Count = 0;
+    match3Count = 0;
+    match2Count = 0;
+
     do {
       drawOneWeek();
 
@@ -142,6 +168,13 @@ function runSimulation() {
         if (rowScore < drawUntilScore) {
           printHTML += 'Oops, You did not get match-' + drawUntilScore + ' during ' + weeksDrawn + ' weeks. Try again!';
         }
+        printHTML += '<br><br>'
+        printHTML += 'Along the way, you got:<br><br>'
+        printHTML += match6Count + ' times match-6<br>'
+        printHTML += match5Count + ' times match-5<br>'
+        printHTML += match4Count + ' times match-4<br>'
+        printHTML += match3Count + ' times match-3<br>'
+        printHTML += match2Count + ' times match-2<br>'
 
     print(printHTML);
     button.textContent = "Simulate"
