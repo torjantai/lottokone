@@ -130,10 +130,9 @@ function runSimulation() {
         }
         printHTML += '<br><br>'
         printHTML += 'Along the way, you got:<br><br>'
-        for (let i = scoreCount.length; i > -1; i--) {
-          if (i < drawUntilScore) {
+        // loop for adding lower score counts
+        for (let i = rowScore - 1; i > -1; i--) {
           printHTML += scoreCount[i] + ' times match-' + i +'<br>';
-          }
         }
 
 
