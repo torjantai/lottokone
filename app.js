@@ -38,32 +38,18 @@ function random40() {
   return randomNumber;
 };
 
-
-//this function creates a winning row
-function createWinningRow() {
-winningRow = [];
+//this funtion creates a row of 7 numbers
+function createRow() {
+row = [];
   do {
     let ball = random40();
-    if ( winningRow.indexOf(ball) === -1 ) {
-      winningRow.push(ball);
+    if ( row.indexOf(ball) === -1 ) {
+      row.push(ball);
     }
 
-  } while ( winningRow.length < 7 );
+  } while ( row.length < 7 );
   //console.log(winningRow);
-};
-
-
-//this function creates a player's row similarly
-function createPlayerRow() {
-playerRow = [];
-  do {
-    let ball = random40();
-    if ( playerRow.indexOf(ball) === -1 ) {
-      playerRow.push(ball);
-    }
-
-  } while ( playerRow.length < 7 );
-  //console.log(playerRow);
+  return row;
 };
 
 //this function tells how many numbers the player got right
@@ -84,8 +70,10 @@ rowScore = 0
 
 //this function creates winningRow and playerRow and then checks how many numbers match
 function drawOneWeek() {
-  createWinningRow();
-  createPlayerRow();
+  // createWinningRow();
+  // createPlayerRow();
+winningRow = createRow();
+playerRow = createRow();
 
   // if ( drawUntilScore === 7 ) {
   //   checkRowFast();
@@ -131,7 +119,7 @@ function runSimulation() {
         printHTML += '<br><br>'
         printHTML += 'Along the way, you got:<br><br>'
         // loop for adding lower score counts
-        for (let i = rowScore - 1; i > -1; i--) {
+        for (let i = drawUntilScore - 1; i > -1; i--) {
           printHTML += scoreCount[i] + ' times match-' + i +'<br>';
         }
 
