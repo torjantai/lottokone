@@ -1,18 +1,14 @@
 /*
 todo
--mahdollisuus pelata vakiorivillä
--tulokset taulukkona, montako kertaa simulaation aikana tuli esim 4 oikein
--tuloksiin voisi laskea lottoriveihin käytetyn rahasumman, mutta miten huomioida pikkuvoittojen palautukset
-
+-option to play with constant row?
 
 */
 
 let winningRow = [];
-let randomNumber;
 let playerRow = [];
 let rowScore  = 0;
 let weeksDrawn = 0;
-let printHTML = ''
+let printHTML = '';
 let howManyWeeks = 1000000;
 let drawUntilScore = 7;
 let scoreCount = [0, 0, 0, 0, 0, 0, 0, 0]; // will store count of matches on this array. Index = rowScore.
@@ -48,7 +44,6 @@ row = [];
     }
 
   } while ( row.length < 7 );
-  //console.log(winningRow);
   return row;
 };
 
@@ -67,7 +62,7 @@ rowScore = 0
 };
 
 
-//this function creates winningRow and playerRow and then checks how many numbers match
+//this function creates a winningRow and a playerRow and then checks how many numbers match
 function drawOneWeek() {
 
   winningRow = createRow();
@@ -81,7 +76,7 @@ function drawOneWeek() {
 function getUserSettings() {
   drawUntilScore = parseInt(document.querySelector('input[name="draw-until-score"]:checked').value);
   howManyWeeks = parseInt(document.getElementById('weeks').value)
-}
+};
 
 
 function runSimulation() {
@@ -92,6 +87,7 @@ function runSimulation() {
 
   //use timeout in order to refresh dom before long loop
   window.setTimeout(function() {
+    // get user settings and reset results before new simulation
     getUserSettings();
     weeksDrawn = 0;
     scoreCount = [0, 0, 0, 0, 0, 0, 0, 0];
@@ -101,19 +97,19 @@ function runSimulation() {
 
     } while ( rowScore < drawUntilScore && weeksDrawn < howManyWeeks);
 
-        if (rowScore >= drawUntilScore) {
-        printHTML += 'You got match-' + rowScore + ' on week ' + weeksDrawn;
-        printHTML += " (" + Math.floor(weeksDrawn/52) +" years)"
-        }
-        if (rowScore < drawUntilScore) {
-          printHTML += 'Oops, You did not get match-' + drawUntilScore + ' during ' + weeksDrawn + ' weeks. Try again!';
-        }
-        printHTML += '<br><br>'
-        printHTML += 'Along the way, you got:<br><br>'
-        // loop for adding lower score counts
-        for (let i = drawUntilScore - 1; i > -1; i--) {
-          printHTML += scoreCount[i] + ' times match-' + i +'<br>';
-        }
+    if (rowScore >= drawUntilScore) {
+      printHTML += 'You got match-' + rowScore + ' on week ' + weeksDrawn;
+      printHTML += " (" + Math.floor(weeksDrawn/52) +" years)"
+    }
+    if (rowScore < drawUntilScore) {
+      printHTML += 'Oops, You did not get match-' + drawUntilScore + ' during ' + weeksDrawn + ' weeks. Try again!';
+    }
+      printHTML += '<br><br>'
+      printHTML += 'Along the way, you got:<br><br>'
+    // loop for adding lower score counts
+    for (let i = drawUntilScore - 1; i > -1; i--) {
+      printHTML += scoreCount[i] + ' times match-' + i +'<br>';
+    }
 
 
 
