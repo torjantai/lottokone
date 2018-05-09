@@ -15,7 +15,7 @@ let weeksDrawn = 0;
 let printHTML = ''
 let howManyWeeks = 1000000;
 let drawUntilScore = 7;
-let scoreCount = [0, 0, 0, 0, 0, 0, 0]; // will store count of match6 - match0 on this array(index 0 is match 6)
+let scoreCount = [0, 0, 0, 0, 0, 0, 0, 0]; // will store count of matches on this array. Index = rowScore.
 
 
 let button = document.getElementById('run-simulation');
@@ -76,7 +76,7 @@ rowScore = 0
   }
 
   if (rowScore < drawUntilScore) {
-    scoreCount[6-rowScore] += 1;
+    scoreCount[rowScore] += 1;
   }
 
 };
@@ -114,7 +114,7 @@ function runSimulation() {
   window.setTimeout(function() {
     getUserSettings();
     weeksDrawn = 0;
-    scoreCount = [0, 0, 0, 0, 0, 0, 0];
+    scoreCount = [0, 0, 0, 0, 0, 0, 0, 0];
 
     do {
       drawOneWeek();
@@ -130,8 +130,10 @@ function runSimulation() {
         }
         printHTML += '<br><br>'
         printHTML += 'Along the way, you got:<br><br>'
-        for (let i = 0; i < scoreCount.length; i++) {
-          printHTML += scoreCount[i] + ' times match-' + (6 - i) +'<br>';
+        for (let i = scoreCount.length; i > -1; i--) {
+          if (i < drawUntilScore) {
+          printHTML += scoreCount[i] + ' times match-' + i +'<br>';
+          }
         }
 
 
