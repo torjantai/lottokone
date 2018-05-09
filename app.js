@@ -64,25 +64,17 @@ rowScore = 0
   if (rowScore < drawUntilScore) {
     scoreCount[rowScore] += 1;
   }
-
 };
 
 
 //this function creates winningRow and playerRow and then checks how many numbers match
 function drawOneWeek() {
-  // createWinningRow();
-  // createPlayerRow();
-winningRow = createRow();
-playerRow = createRow();
 
-  // if ( drawUntilScore === 7 ) {
-  //   checkRowFast();
-  //   }
-  // else {
-    checkRow();
-    // }
+  winningRow = createRow();
+  playerRow = createRow();
+
+  checkRow();
   weeksDrawn += 1;
-  //console.log(weeksDrawn);
 };
 
 //get user input
