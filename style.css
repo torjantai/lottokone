@@ -97,6 +97,7 @@ input[type="radio"]:checked + label {
 }
 #results {
   min-height: 4em;
+
 }
 
 #load {
