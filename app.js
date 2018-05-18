@@ -118,10 +118,3 @@ function runSimulation() {
 
   }, 100);//end timeout
 };//end runSimulation
-
-
-
-
-/*
-runSimulation();
-*/
