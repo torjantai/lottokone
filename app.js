@@ -1,6 +1,7 @@
 /*
 todo
--option to play with constant row?
+-option to play with constant row
+-completely re-write the program with object oriented style
 
 */
 
@@ -14,7 +15,7 @@ let drawUntilScore = 7;
 let scoreCount = [0, 0, 0, 0, 0, 0, 0, 0]; // will store count of matches on this array. Index = rowScore.
 
 
-let button = document.getElementById('run-simulation');
+const button = document.getElementById('run-simulation');
 button.addEventListener("click", runSimulation);
 
 /**************************************
@@ -24,7 +25,7 @@ button.addEventListener("click", runSimulation);
 
 //this function prints results on the page
 function print(message) {
-  let output = document.getElementById('results');
+  const output = document.getElementById('results');
   output.innerHTML = message;
 };
 
