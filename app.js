@@ -38,8 +38,9 @@ function random40() {
 //this funtion creates a row of 7 numbers
 function createRow() {
 row = [];
+  let ball;
   do {
-    let ball = random40();
+    ball = random40();
     if ( row.indexOf(ball) === -1 ) {
       row.push(ball);
     }
@@ -98,19 +99,21 @@ function runSimulation() {
 
     } while ( rowScore < drawUntilScore && weeksDrawn < howManyWeeks);
 
-    if (rowScore >= drawUntilScore) {
-      printHTML += 'You got match-' + rowScore + ' on week ' + weeksDrawn;
-      printHTML += " (" + Math.floor(weeksDrawn/52) +" years)"
-    }
-    if (rowScore < drawUntilScore) {
-      printHTML += 'Oops, You did not get match-' + drawUntilScore + ' during ' + weeksDrawn + ' weeks. Try again!';
-    }
-      printHTML += '<br><br>'
-      printHTML += 'Along the way, you got:<br><br>'
-    // loop for adding lower score counts
-    for (let i = drawUntilScore - 1; i > -1; i--) {
-      printHTML += scoreCount[i] + ' times match-' + i +'<br>';
-    }
+      if (rowScore >= drawUntilScore) {
+        // printHTML += 'You got match-' + rowScore + ' on week ' + weeksDrawn;
+        // printHTML += " (" + Math.floor(weeksDrawn/52) +" years)"
+        const years = Math.floor(weeksDrawn/52)
+        printHTML = `You got match-${rowScore} on week ${weeksDrawn} (${years} years)`;
+      }
+      if (rowScore < drawUntilScore) {
+      //  printHTML += 'Oops, You did not get match-' + drawUntilScore + ' during ' + weeksDrawn + ' weeks. Try again!';
+        printHTML += `Oops, You did not get match-${drawUntilScore} during ${weeksDrawn} weeks. Try again!'`;
+      }
+        printHTML += '<br><br> Along the way, you got:<br><br>'
+      // loop for adding lower score counts
+      for (let i = drawUntilScore - 1; i > -1; i--) {
+        printHTML += scoreCount[i] + ' times match-' + i +'<br>';
+      }
 
 
 
